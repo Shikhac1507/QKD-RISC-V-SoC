@@ -1,0 +1,41 @@
+Time resolution is 1 ps
+=========== FIRMWARE LOADED ===========
+  image : firmware.mem
+  rom[0] = 200002b7   (expect 200002b7 = lui x5,0x20000)
+  rom[1] = 00000313
+  rom[2] = 0062a423
+=======================================
+220 ns : SIFT STATUS -> 0   (bit0 DONE, bit1 BUSY)
+220 ns : PE   STATUS -> 0
+220 ns : AUTH STATUS -> 0
+660 ns : SIFT STATUS -> 2   (bit0 DONE, bit1 BUSY)
+660 ns : NOTE sifting start pulse not coincident with a register write
+1220 ns : SIFT STATUS -> 1   (bit0 DONE, bit1 BUSY)
+1860 ns : PE   STATUS -> 2
+18500 ns : PE   STATUS -> 1
+19220 ns : AUTH STATUS -> 2
+20820 ns : AUTH STATUS -> 1
+
+================ RESULTS ================
+PC parked at 00000100
+
+-- Sifting  (byte 100 -> word 25) --
+   105          expect 105
+
+-- Parameter Estimation  (byte 700 -> word 175) --
+   Var(A) = 084d0000   expect 084D0000  (2125.0)
+   Var(B) = 02134000   expect 02134000  (531.25)
+   Cov    = 04268000   expect 04268000  (1062.5)
+   T      = 00004000   expect 00004000  (0.25)
+   eps    = ffff0000
+   valid  = 1          expect 1
+
+-- Authentication  (byte 2700 -> word 675) --
+   tag    = 1416db14   expect 1416DB14
+   status = 00000003   expect 00000003
+
+-- Peripherals --
+   PWM  PERIOD=1000 DUTY=500 ENABLE=1
+   TIMER COMPARE=50 EXPIRED=0
+=========================================
+$finish called at time : 2 ms : File "C:/Users/srjos/newrisc/newrisc.srcs/sim_1/new/tb_cv_qkd_soc.v" Line 217
